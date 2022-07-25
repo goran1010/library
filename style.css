@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: bolder;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #7a7a7a;
+  padding: 1rem;
+  gap: 1rem;
+}
+.add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.title,
+.author,
+.pages {
+  color: black;
+  appearance: none;
+  outline: none;
+  border-radius: 0.5rem;
+  height: 1.5rem;
+  border: 2px solid black;
+}
+.title:focus,
+.author:focus,
+.pages:focus {
+  border: 2px solid lightgreen;
+}
+
+.button {
+  background-color: #16a34a;
+  height: 1.5rem;
+  width: fit-content;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+}
+.container > div {
+  background-color: #4ade80;
+  color: white;
+  font-weight: bold;
+  padding: 1.1rem;
+  border-radius: 0.5rem;
+  height: 7rem;
+  background-image: url(./img/book.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 90px;
+  position: relative;
+}
+.bookDiv {
+  color: white;
+  font-weight: bold;
+  background-color: #e11d48;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.read {
+  color: white;
+  font-weight: bold;
+  background-color: #fde047;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 0.8rem;
+  height: 1rem;
+  width: fit-content;
+  padding: 0.2rem;
+  border-top-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

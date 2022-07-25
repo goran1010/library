@@ -1,38 +1,68 @@
-let myLibrary = [];
+const myLibrary = [];
+
 const container = document.querySelector(`.container`);
 
 function Book(title, author, pages) {
   this.title = title;
-  this.pages = pages;
   this.author = author;
-  this.read = read;
+  this.pages = pages;
+  this.read = `No`;
 }
 
-function addBookToLibrary() {
-  let title = prompt(`Book title:`, `Lord of the Rings`);
-  let author = prompt(`Book author:`, `JRR Tolkien`);
-  let pages = prompt(`Number of Pages:`, 999);
-  let read = prompt(`Did you read it? `, true);
-  myLibrary.push(new Book(title, author, pages));
+Book.prototype.changeRead = function () {
+  if (this.read == `Yes`) {
+    this.read = `No`;
+  } else this.read = `Yes`;
+};
 
-  let newBook = document.createElement(`div`);
-  newBook.textContent = `${myLibrary[myLibrary.length - 1]}`;
-  container.appendChild(newBook);
-}
+const newTitle = document.querySelector(`.title`);
+const newAuthor = document.querySelector(`.author`);
+const newPages = document.querySelector(`.pages`);
 
-document.addEventListener(`keyup`, (e) => {
-  if (e.key == `b`)
-    myLibrary.push({
-      title: `Lord of the Rings`,
-      author: `JRR Tolkien`,
-      pages: 999,
-      read: true,
-    });
+const newBookButton = document.querySelector(`.button`);
+newBookButton.addEventListener(`click`, (e) => {
+  let title = newTitle.value;
+  let author = newAuthor.value;
+  let pages = newPages.value;
+
+  let newBook = new Book(title, author, pages);
+
+  myLibrary.push(newBook);
+  createBooksOnPage(container);
 });
-document.addEventListener(`keyup`, (e) => {
-  if (e.key == `s`) {
-    myLibrary.forEach((book) => {
-      console.log(book);
-    });
+
+function createBooksOnPage(container) {
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
   }
-});
+  myLibrary.forEach((element, index) => {
+    let showBook = document.createElement(`div`);
+    console.log(element.read);
+
+    showBook.textContent = `${element.title}
+    ${element.author}
+    ${element.pages}
+    Read Book: ${element.read}`;
+    container.appendChild(showBook);
+
+    let deleteButton = document.createElement(`div`);
+    deleteButton.textContent = `X`;
+    deleteButton.classList.add(`${index}`);
+    deleteButton.classList.add(`bookDiv`);
+    deleteButton.addEventListener(`click`, (e) => {
+      myLibrary.splice(index, 1);
+      console.log(myLibrary);
+      createBooksOnPage(container);
+    });
+    showBook.appendChild(deleteButton);
+
+    let readButton = document.createElement(`div`);
+    readButton.classList.add(`read`);
+    readButton.textContent = `Change Read`;
+    readButton.addEventListener(`click`, () => {
+      element.changeRead();
+      createBooksOnPage(container);
+    });
+    showBook.appendChild(readButton);
+  });
+}
