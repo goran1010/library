@@ -11,18 +11,7 @@ function Book(title, author, pages) {
   this.read = `No`;
 }
 
-Book.prototype.changeRead = function () {
-  if (this.read == `Yes`) {
-    this.read = `No`;
-  } else this.read = `Yes`;
-};
-
-const newTitle = document.querySelector(`.title`);
-const newAuthor = document.querySelector(`.author`);
-const newPages = document.querySelector(`.pages`);
-
-const newBookButton = document.querySelector(`.button`);
-newBookButton.addEventListener(`click`, (e) => {
+function createNewBook(e) {
   let title = newTitle.value;
   let author = newAuthor.value;
   let pages = newPages.value;
@@ -43,6 +32,25 @@ newBookButton.addEventListener(`click`, (e) => {
 
   myLibrary.push(newBook);
   createBooksOnPage(container);
+}
+
+Book.prototype.changeRead = function () {
+  if (this.read === `Yes`) {
+    this.read = `No`;
+  } else this.read = `Yes`;
+};
+
+const newTitle = document.querySelector(`.title`);
+const newAuthor = document.querySelector(`.author`);
+const newPages = document.querySelector(`.pages`);
+
+const newBookButton = document.querySelector(`.button`);
+newBookButton.addEventListener(`click`, createNewBook);
+
+window.addEventListener(`keyup`, (e) => {
+  if (e.key === `Enter`) {
+    createNewBook();
+  }
 });
 
 function createBooksOnPage(container) {
@@ -52,10 +60,21 @@ function createBooksOnPage(container) {
   myLibrary.forEach((element, index) => {
     let showBook = document.createElement(`div`);
 
-    showBook.textContent = `${element.title}
-    ${element.author}
-    ${element.pages}
-    Read Book: ${element.read}`;
+    let bookTitle = document.createElement(`div`);
+    let bookAuthor = document.createElement(`div`);
+    let bookPages = document.createElement(`div`);
+    let bookRead = document.createElement(`div`);
+
+    bookTitle.textContent = `${element.title}`;
+    bookAuthor.textContent = `Written by ${element.author}`;
+    bookPages.textContent = `Has ${element.pages} pages`;
+    bookRead.textContent = `Have I read it?
+    - ${element.read}`;
+
+    showBook.appendChild(bookTitle);
+    showBook.appendChild(bookAuthor);
+    showBook.appendChild(bookPages);
+    showBook.appendChild(bookRead);
     container.appendChild(showBook);
 
     let deleteButton = document.createElement(`div`);
