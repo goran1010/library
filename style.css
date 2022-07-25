@@ -20,6 +20,13 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
+}
+.warning {
+  background-color: #e11d48;
+  position: absolute;
+  bottom: -0.9rem;
+  font-size: 0.8rem;
 }
 .title,
 .author,
@@ -47,6 +54,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -82,9 +90,19 @@ body {
   justify-content: center;
   align-items: center;
 }
+.bookDiv:hover,
+.read:hover,
+.button:hover {
+  cursor: pointer;
+}
+.bookDiv,
+.read,
+.button {
+  user-select: none;
+}
 
 .read {
-  color: white;
+  color: black;
   font-weight: bold;
   background-color: #fde047;
   position: absolute;

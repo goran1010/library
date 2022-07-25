@@ -1,6 +1,8 @@
 const myLibrary = [];
 
 const container = document.querySelector(`.container`);
+const form = document.querySelector(`.add`);
+let warning;
 
 function Book(title, author, pages) {
   this.title = title;
@@ -25,6 +27,18 @@ newBookButton.addEventListener(`click`, (e) => {
   let author = newAuthor.value;
   let pages = newPages.value;
 
+  if (!title || !author || !pages) {
+    if (warning) return;
+    warning = document.createElement(`div`);
+    warning.classList.add(`warning`);
+    warning.textContent = `You need to fill out all the fields`;
+    form.appendChild(warning);
+    return;
+  }
+  if (warning) {
+    form.removeChild(warning);
+    warning = undefined;
+  }
   let newBook = new Book(title, author, pages);
 
   myLibrary.push(newBook);
@@ -37,7 +51,6 @@ function createBooksOnPage(container) {
   }
   myLibrary.forEach((element, index) => {
     let showBook = document.createElement(`div`);
-    console.log(element.read);
 
     showBook.textContent = `${element.title}
     ${element.author}
@@ -51,7 +64,6 @@ function createBooksOnPage(container) {
     deleteButton.classList.add(`bookDiv`);
     deleteButton.addEventListener(`click`, (e) => {
       myLibrary.splice(index, 1);
-      console.log(myLibrary);
       createBooksOnPage(container);
     });
     showBook.appendChild(deleteButton);
