@@ -60,6 +60,7 @@ body {
 
 .container {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
@@ -75,8 +76,14 @@ body {
   background-position: center;
   background-size: cover;
   position: relative;
-  width: 9rem;
-  height: 12rem;
+  max-width: 9rem;
+  min-height: 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.container > div > div {
+  overflow-wrap: break-word;
 }
 .bookDiv {
   color: white;
