@@ -4,11 +4,18 @@ const container = document.querySelector(`.container`);
 const form = document.querySelector(`.add`);
 let warning;
 
-function Book(title, author, pages) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = `No`;
+class Book {
+  constructor(title, author, pages) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = `No`;
+  }
+  changeRead() {
+    if (this.read === `Yes`) {
+      this.read = `No`;
+    } else this.read = `Yes`;
+  }
 }
 
 function createNewBook(e) {
@@ -33,12 +40,6 @@ function createNewBook(e) {
   myLibrary.push(newBook);
   createBooksOnPage(container);
 }
-
-Book.prototype.changeRead = function () {
-  if (this.read === `Yes`) {
-    this.read = `No`;
-  } else this.read = `Yes`;
-};
 
 const newTitle = document.querySelector(`.title`);
 const newAuthor = document.querySelector(`.author`);
