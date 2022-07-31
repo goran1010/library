@@ -36,7 +36,7 @@ function createNewBook(e) {
     warning = undefined;
   }
   let newBook = new Book(title, author, pages);
-
+  console.log(newBook);
   myLibrary.push(newBook);
   createBooksOnPage(container);
 }
